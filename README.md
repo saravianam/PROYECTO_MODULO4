@@ -36,7 +36,7 @@ select
 	“lsat_name”,
 	"actor_id"
 from "actor" 
-where "actor_id">='30'AND "actor_id"<= '40';
+where "actor_id">=30 AND "actor_id"<= 40;
 
 4. Obten las películas cuyo idioma coincide con el idioma original
 SELECT DISTINCT (original_language_id)
@@ -59,14 +59,14 @@ WHERE a.last_name ILIKE '%Allen%';
 7.Cantidad de películas en cada clasificación de la tabla “film” y muestra la clasificación junto con el recuento.
 select 
 	"rating",
-	count("film_id"),
+	count("film_id")
 from "film"
 GROUP BY rating ;
 
 8.Encuentra el título de todas las películas que son 'PG-13' o tienen una duracion mayor a 3 horas en la tabla film
 SELECT f.title
 FROM film AS f 
-WHERE f.rating = 'PG-13' OR f.length > '180';
+WHERE f.rating = 'PG-13' OR f.length > 180;
 
 9. Encuentra la variabilidad de lo que costaría reemplazar las películas
 SELECT round (variance(replacement_cost),2)
@@ -90,7 +90,7 @@ ORDER BY r.rental_date DESC
 LIMIT 1 OFFSET 2;
 
 12.Encuentra el título de las películas en la tabla film que no sean ni 'NC-17' ni 'G' en su clasificación
-SELECT f.title , 
+SELECT f.title 
 FROM film AS f
 WHERE f.rating NOT IN ('NC-17','G');
 
@@ -104,7 +104,7 @@ GROUP BY f.rating ;
 14.Titulo de películas con duración > 180 min
 SELECT f.title
 FROM film AS f
-WHERE f.length >'180';
+WHERE f.length >180;
 
 15. ¿Cuánto dinero ha generado en total la empresa?
 SELECT SUM(amount) AS total_recaudado
@@ -361,7 +361,7 @@ SELECT
     COUNT(fa.film_id) AS cantidad_peliculas
 FROM actor AS a
 LEFT JOIN film_actor AS fa ON a.actor_id = fa.actor_id
-GROUP BY a.actor_id, actor;
+GROUP BY a.first_name, a.last_name;
 
 48. Crea una vista llamada “actor_num_peliculas” que muestre los nombres de los actores y el número de películas en las que han participado.
 CREATE VIEW actor_num_peliculas AS
@@ -370,7 +370,7 @@ SELECT
     COUNT(fa.film_id) AS cantidad_peliculas
 FROM actor AS a
 LEFT JOIN film_actor AS fa ON a.actor_id = fa.actor_id
-GROUP BY a.actor_id, actor;
+GROUP BY a.first_name, a.last_name;
 
 49. Calcula el número total de alquileres realizados por cada cliente.
 SELECT 
